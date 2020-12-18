@@ -1,2 +1,2 @@
 # SimpleOnlineShop
-Exploring asp.net core + angular
+Exploring net5 + angular
