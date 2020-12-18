@@ -26,10 +26,7 @@ namespace Web
 
             services.AddControllers();
 
-            services.AddDbContext<AppDbContext>((sp, builder) =>
-            {
-                builder.UseInMemoryDatabase("simple-online-shop-db");
-            });
+            services.AddDbContext<AppDbContext>(builder => { builder.UseInMemoryDatabase("simple-online-shop-db"); });
 
             services.AddScoped<IDbContext, AppDbContext>();
 
@@ -48,10 +45,7 @@ namespace Web
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

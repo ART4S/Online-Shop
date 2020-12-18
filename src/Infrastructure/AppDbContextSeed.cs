@@ -1,6 +1,6 @@
-﻿using Domian.Entities;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Domian.Entities;
 
 namespace Infrastructure
 {
@@ -11,8 +11,8 @@ namespace Infrastructure
             if (context.Products.Any()) return;
 
             await context.Products.AddRangeAsync(
-                new Product() { Name = "ProductA" },
-                new Product() { Name = "ProductB" });
+                new Product { Name = "ProductA" },
+                new Product { Name = "ProductB" });
 
             await context.SaveChangesAsync();
         }

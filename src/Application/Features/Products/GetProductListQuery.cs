@@ -1,14 +1,13 @@
-﻿using Application.Interfaces;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using Domian.Entities;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Interfaces;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
-namespace Application.Features.Products.GetProductList
+namespace Application.Features.Products
 {
     public class GetProductListQuery : IRequest<IQueryable<ProductItemDto>>
     {

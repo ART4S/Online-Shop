@@ -17,7 +17,9 @@ namespace Web.Configuration
                 }
                 catch (Exception ex)
                 {
-                    var logger = ctx.RequestServices.GetService<ILogger>();
+                    ILogger logger = ctx.RequestServices
+                        .GetService<ILoggerFactory>()
+                        .CreateLogger("RequestErrors");
 
                     logger.LogError(ex, "Ошибка запроса");
                 }

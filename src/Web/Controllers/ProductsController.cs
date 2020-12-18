@@ -1,10 +1,8 @@
-﻿using Application.Features.Products;
-using Application.Features.Products.GetProductList;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
+using Application.Features.Products;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading.Tasks;
 using Web.Controllers.Base;
+using Web.Pagination;
 
 namespace Web.Controllers
 {
@@ -13,10 +11,9 @@ namespace Web.Controllers
     public class ProductsController : BaseController
     {
         [HttpGet]
-        [ProducesResponseType(typeof(IQueryable<ProductItemDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(PagedQuery request)
         {
-            return Ok(await Mediator.Send(new GetProductListQuery()));
+            return Ok((await Mediator.Send(new GetProductListQuery())).ApplyPagination(request));
         }
     }
 }

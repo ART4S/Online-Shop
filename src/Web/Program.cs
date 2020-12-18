@@ -1,11 +1,11 @@
+using System;
+using System.Threading.Tasks;
 using Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
 
 namespace Web
 {
@@ -27,7 +27,7 @@ namespace Web
                     webBuilder.UseStartup<Startup>();
                 });
 
-        static async Task InitDbAsync(IHost host)
+        private static async Task InitDbAsync(IHost host)
         {
             using var scope = host.Services.CreateScope();
 
