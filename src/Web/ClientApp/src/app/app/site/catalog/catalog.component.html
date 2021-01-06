@@ -1,0 +1,176 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Filter -->
+    <div class="col-2 py-5">
+      <!-- Spinner -->
+      <div
+        class="vh-100 d-flex justify-content-center align-items-center"
+        *ngIf="!filtersLoaded"
+      >
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <!-- Sections -->
+      <div class="accordion" *ngIf="filtersLoaded">
+        <!-- Types -->
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#typeCollapse"
+              aria-expanded="false"
+              aria-controls="typeCollapse"
+            >
+              Types
+            </button>
+          </h3>
+
+          <div
+            class="accordion-collapse collapse show"
+            id="typeCollapse"
+            aria-labelledby="typeCollapse"
+          >
+            <div class="accordion-body">
+              <div class="form-check" *ngFor="let type of types">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{ 'types' + type.id }}"
+                  [(ngModel)]="type.checked"
+                  (change)="applyTypeFilter()"
+                />
+
+                <label class="form-check-label" for="{{ 'types' + type.id }}">{{
+                  type.name
+                }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brands -->
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#brandCollapse"
+              aria-expanded="false"
+              aria-controls="brandCollapse"
+            >
+              Brands
+            </button>
+          </h3>
+
+          <div
+            class="accordion-collapse collapse show"
+            id="brandCollapse"
+            aria-labelledby="brandCollapse"
+          >
+            <div class="accordion-body">
+              <div class="form-check" *ngFor="let brand of brands">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="{{ 'brands' + brand.id }}"
+                  [(ngModel)]="brand.checked"
+                  (change)="applyBrandFilter()"
+                />
+
+                <label
+                  class="form-check-label"
+                  for="{{ 'brands' + brand.id }}"
+                  >{{ brand.name }}</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Catalog -->
+    <div class="col">
+      <!-- Spinner -->
+      <div
+        class="vh-100 d-flex justify-content-center align-items-center"
+        *ngIf="!catalog"
+      >
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <!-- No items message -->
+      <div
+        class="vh-100 d-flex justify-content-center align-items-center"
+        *ngIf="catalog && !catalog.items.length"
+      >
+        <h1 class="display-4">There are no items avaliable yet</h1>
+      </div>
+
+      <!-- Items -->
+      <main *ngIf="catalog && catalog.items.length">
+        <nav class="py-3">
+          <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="!catalog.hasPrevPage">
+              <a class="page-link" (click)="gotoPage(catalog.currentPage - 1)"
+                >Previous</a
+              >
+            </li>
+
+            <li
+              class="page-item"
+              *ngFor="let pageNum of catalogPageNumbers"
+              [class.active]="pageNum === catalog.currentPage"
+            >
+              <span class="page-link" (click)="gotoPage(pageNum)">{{
+                pageNum
+              }}</span>
+            </li>
+
+            <li class="page-item" [class.disabled]="!catalog.hasNextPage">
+              <span
+                class="page-link"
+                (click)="gotoPage(catalog.currentPage + 1)"
+                >Next</span
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <section class="catalog m-auto">
+          <div class="card" *ngFor="let item of catalog.items">
+            <img
+              class="card-img-top"
+              [src]="item.pictureUrl"
+              alt="item picture"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">{{ item.name }}</h5>
+
+              <p class="card-text">
+                {{ item.description }}
+              </p>
+
+              <button class="btn btn-primary">ADD TO CART</button>
+
+              <div class="card-footer text-muted">
+                {{
+                  (item.updateDate ? item.updateDate : item.createDate)
+                    | timeAgo
+                }}
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</div>

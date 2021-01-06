@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Application.Features.Products;
+using Application.Features.Products.GetAllPaged;
+using Application.Features.Products.GetById;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Base;
-using Web.Pagination;
 
 namespace Web.Controllers
 {
@@ -11,9 +11,15 @@ namespace Web.Controllers
     public class ProductsController : BaseController
     {
         [HttpGet]
-        public async Task<IActionResult> Get(PagedQuery request)
+        public async Task<IActionResult> GetAllPaged(GetAllPagedQuery query)
         {
-            return Ok((await Mediator.Send(new GetProductListQuery())).ApplyPagination(request));
+            return Ok(await Mediator.Send(query));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            return Ok(await Mediator.Send(new GetByIdQuery { Id = id }));
         }
     }
 }

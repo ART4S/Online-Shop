@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
 
 namespace Web.Configuration
 {
@@ -18,7 +18,7 @@ namespace Web.Configuration
                 catch (Exception ex)
                 {
                     ILogger logger = ctx.RequestServices
-                        .GetService<ILoggerFactory>()
+                        .GetService<ILoggerFactory>()!
                         .CreateLogger("RequestErrors");
 
                     logger.LogError(ex, "Ошибка запроса");

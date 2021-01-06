@@ -1,0 +1,18 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Other"
+  },
+  {
+    "id": 2,
+    "name": ".NET"
+  },
+  {
+    "id": 3,
+    "name": "Roslyn"
+  },
+  {
+    "id": 4,
+    "name": "Prism"
+  }
+]

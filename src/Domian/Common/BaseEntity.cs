@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Domian.Common
+﻿namespace Domian.Common
 {
     public class BaseEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

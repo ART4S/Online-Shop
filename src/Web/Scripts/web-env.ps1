@@ -1,0 +1,2 @@
+cd ..
+powershell.exe -noexit

@@ -1,0 +1,120 @@
+﻿[
+  {
+    "id": 1,
+    "name": ".NET Bot Black Sweatshirt",
+    "pictureUrl": "../../../../assets/images/products/1.png",
+    "price": 0,
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "brandId": 2,
+    "typeId": 4,
+    "category": 0 
+  },
+  {
+    "id": 2,
+    "name": ".NET Black & White Mug",
+    "price": 1.1,
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "pictureUrl": "../../../../assets/images/products/2.png",
+    "brandId": 2,
+    "typeId": 1,
+    "category": 0
+  },
+  {
+    "id": 3,
+    "name": "Prism White T-Shirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "pictureUrl": "../../../../assets/images/products/3.png",
+    "price": 22.22,
+    "brandId": 4,
+    "typeId": 2,
+    "category": 0
+  },
+  {
+    "id": 4,
+    "name": ".NET Foundation Sweatshirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "pictureUrl": "../../../../assets/images/products/4.png",
+    "price": 333.333,
+    "brandId": 2,
+    "typeId": 4,
+    "category": 1
+  },
+  {
+    "id": 5,
+    "name": "Roslyn Red Sheet",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "pictureUrl": "../../../../assets/images/products/5.png",
+    "price": 4444.4444,
+    "brandId": 3,
+    "typeId": 3,
+    "category": 1
+  },
+  {
+    "id": 6,
+    "name": ".NET Blue Sweatshirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "pictureUrl": "../../../../assets/images/products/6.png",
+    "price": 55555.55555,
+    "brandId": 2,
+    "typeId": 4,
+    "category": 1
+  },
+  {
+    "id": 7,
+    "name": "Roslyn Red T-Shirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "pictureUrl": "../../../../assets/images/products/7.png",
+    "price": 666666.666666,
+    "brandId": 3,
+    "typeId": 2,
+    "category": 2
+  },
+  {
+    "id": 8,
+    "name": "Kudu Purple Sweatshirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "pictureUrl": "../../../../assets/images/products/8.png",
+    "price": 7.77777,
+    "brandId": 1,
+    "typeId": 4,
+    "category": 2
+  },
+  {
+    "id": 9,
+    "name": "Cup<T> White Mug",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "pictureUrl": "../../../../assets/images/products/9.png",
+    "price": 8.8888,
+    "brandId": 1,
+    "typeId": 1,
+    "category": 2
+  },
+  {
+    "id": 10,
+    "name": ".NET Foundation Sheet",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "pictureUrl": "../../../../assets/images/products/10.png",
+    "price": 9.9999,
+    "brandId": 2,
+    "typeId": 3,
+    "category": 2
+  },
+  {
+    "id": 11,
+    "name": "Cup<T> Sheet",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "pictureUrl": "../../../../assets/images/products/11.png",
+    "price": 10.10,
+    "brandId": 1,
+    "typeId": 3
+  },
+  {
+    "id": 12,
+    "name": "Prism White TShirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "pictureUrl": "../../../../assets/images/products/12.png",
+    "price": 11.11,
+    "brandId": 4,
+    "typeId": 2
+  }
+]
