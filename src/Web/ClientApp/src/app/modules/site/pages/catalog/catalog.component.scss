@@ -1,0 +1,6 @@
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  max-width: fit-content;
+  grid-gap: 50px;
+}

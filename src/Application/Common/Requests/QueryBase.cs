@@ -2,7 +2,7 @@
 
 namespace Application.Common.Requests
 {
-    public abstract class QueryBase<T> : IRequest<T>
+    public abstract class QueryBase<TResult> : IRequest<TResult>
     {
     }
 }

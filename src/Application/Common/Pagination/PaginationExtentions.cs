@@ -8,9 +8,10 @@ namespace Application.Common.Pagination
 {
     static class PaginationExtentions
     {
-        public static async Task<PagedResponse<TDto>> PaginateAsync<TDto>(
+        public static async Task<TResult> PaginateAsync<TDto, TResult>(
             this IQueryable<TDto> source, 
-            PagedQuery<TDto> request)
+            PagedQuery<TResult> request)
+            where TResult: PagedResponse<TDto>, new()
         {
             if (request.PageNumber < 1)
                 throw new InvalidQueryException("Page number must be greather than 0");
@@ -19,7 +20,7 @@ namespace Application.Common.Pagination
             if (request.PageNumber > Constants.MaxPageSize)
                 throw new InvalidQueryException($"Max page must be less or equal {Constants.MaxPageSize}");
 
-            var result = new PagedResponse<TDto>
+            var result = new TResult
             {
                 CurrentPage = request.PageNumber,
                 TotalPages = (int) Math.Ceiling(

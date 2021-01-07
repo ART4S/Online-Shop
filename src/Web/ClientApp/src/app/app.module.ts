@@ -1,24 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app/app.component';
-import { PageNotFoundComponent } from './app/page-not-found/page-not-found.component';
-import { SiteModule } from './app/site/site.module';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SiteModule } from './modules/site/site.module';
+import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-	declarations: [AppComponent, PageNotFoundComponent],
-	imports: [
-		BrowserModule,
-		FormsModule,
-		HttpClientModule,
-		SiteModule,
-		AppRoutingModule,
-		NoopAnimationsModule,
-	],
+	declarations: [AppComponent],
+	imports: [BrowserModule, RouterModule.forRoot([]), SiteModule],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
