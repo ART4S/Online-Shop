@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Application.Common.Behaviours;
 using Application.Services;
 using AutoMapper;
@@ -33,6 +34,7 @@ namespace Web
             services.AddControllers()
                 .AddJsonOptions(configure =>
                 {
+                    configure.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                     configure.JsonSerializerOptions.IgnoreNullValues = true;
                     configure.JsonSerializerOptions.WriteIndented = !Environment.IsProduction();
                 });

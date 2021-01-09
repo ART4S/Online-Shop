@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="">SimpleOnlineShop</a>
 
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a
@@ -22,13 +22,19 @@
             </li>
 
             <li>
-              <a class="dropdown-item" [routerLink]="['/catalog', 'mens']"
+              <a
+                class="dropdown-item"
+                [routerLink]="['/catalog']"
+                [queryParams]="{ category: 'mens' }"
                 >Men's</a
               >
             </li>
 
             <li>
-              <a class="dropdown-item" [routerLink]="['/catalog', 'womens']"
+              <a
+                class="dropdown-item"
+                [routerLink]="['/catalog']"
+                [queryParams]="{ category: 'womens' }"
                 >Women's</a
               >
             </li>
@@ -36,8 +42,8 @@
             <li>
               <a
                 class="dropdown-item"
-                [routerLink]="['/catalog', 'kids']"
-                queryParamsHandling="merge"
+                [routerLink]="['/catalog']"
+                [queryParams]="{ category: 'kids' }"
                 >Kid's</a
               >
             </li>

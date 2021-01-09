@@ -1,5 +1,5 @@
 export enum ProductCategory {
-  Mens,
-  Womens,
-  Kids
+  mens,
+  womens,
+  kids
 }

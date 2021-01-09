@@ -2,44 +2,48 @@ import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { environment } from '../../../environments/environment'; // todo: inject BASE_URL const
+import AppConfig from 'src/app/app-config';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class ApiHttpService {
-	constructor(private http: HttpClient) {}
+	private _baseUrl: string;
+
+	constructor(appConfig: AppConfig, private _http: HttpClient) {
+		this._baseUrl = appConfig.baseUrl;
+	}
 
 	get<T>(url: string, options?: unknown) {
 		url = this.buildUrl(url);
-		return this.http
+		return this._http
 			.get<T>(url, options)
 			.pipe(catchError(this.logError<T>('get', url)));
 	}
 
 	post<T>(url: string, body: any, options?: unknown) {
 		url = this.buildUrl(url);
-		return this.http
+		return this._http
 			.post<T>(url, body, options)
 			.pipe(catchError(this.logError<T>('post', url)));
 	}
 
 	put<T>(url: string, body: any, options?: unknown) {
 		url = this.buildUrl(url);
-		return this.http
+		return this._http
 			.put<T>(url, body, options)
 			.pipe(catchError(this.logError<T>('put', url)));
 	}
 
 	delete<T>(url: string, options?: unknown) {
 		url = this.buildUrl(url);
-		return this.http
+		return this._http
 			.delete<T>(url, options)
 			.pipe(catchError(this.logError<T>('delete', url)));
 	}
 
 	private buildUrl(url: string): string {
-		return `${environment.baseUrl}/api/${url}`;
+		return `${this._baseUrl}/api/${url}`;
 	}
 
 	private logError<T>(

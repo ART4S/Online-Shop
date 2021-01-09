@@ -1,0 +1,27 @@
+<div class="card" *ngIf="item">
+  <img
+    class="card-img-top"
+    [src]="item.pictureUrl"
+    alt="item picture"
+    [routerLink]="[item.id, 'details']"
+  />
+
+  <div class="card-body">
+    <h5 class="card-title">{{ item.name }}</h5>
+
+    <p class="card-text">
+      {{ item.description }}
+    </p>
+
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-primary">ADD TO CART</button>
+      <h5 class="card-title">
+        {{ item.price | currency: item.currency:"symbol-narrow" }}
+      </h5>
+    </div>
+
+    <div class="card-footer text-muted">
+      {{ (item.updateDate ? item.updateDate : item.createDate) | timeAgo }}
+    </div>
+  </div>
+</div>

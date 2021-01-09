@@ -8,5 +8,6 @@ export default class ProductItemDto {
 	createDate: Date;
 	updateDate: Date;
 	pictureUrl: string;
-	category: ProductCategory
+	category: ProductCategory;
+	currency: string = 'USD'; // TODO: remove
 }
