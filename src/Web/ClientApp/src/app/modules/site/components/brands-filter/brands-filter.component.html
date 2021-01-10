@@ -1,0 +1,38 @@
+<div class="accordion-item">
+  <h3 class="accordion-header">
+    <button
+      class="accordion-button"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#brandCollapse"
+      aria-expanded="false"
+      aria-controls="brandCollapse"
+    >
+      Brands
+    </button>
+  </h3>
+
+  <div
+    class="accordion-collapse collapse show"
+    id="brandCollapse"
+    aria-labelledby="brandCollapse"
+  >
+    <div class="accordion-body">
+      <div class="form-check" *ngFor="let brand of brands">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="{{ 'brand-filter-' + brand.id }}"
+          [(ngModel)]="brand.selected"
+          (change)="brand.apply()"
+        />
+
+        <label
+          class="form-check-label"
+          for="{{ 'brand-filter-' + brand.id }}"
+          >{{ brand.name }}</label
+        >
+      </div>
+    </div>
+  </div>
+</div>

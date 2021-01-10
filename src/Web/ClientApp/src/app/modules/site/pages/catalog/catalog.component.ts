@@ -3,11 +3,12 @@ import { ProductsService } from 'src/app/core/services/products.service';
 import { ProductBrandsService } from 'src/app/core/services/product-brands.service';
 import { ProductTypesService } from 'src/app/core/services/product-types.service';
 import GetAllProductsRequest from 'src/app/core/requests/products/get-all-paged-request';
-import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ProductCategory } from '../../../../core/enums/product-category';
-import CatalogVm from 'src/app/core/models/products/catalog-vm';
-import { FilterItem } from '../../components/filter-section/filter-section.component';
 import { SortDirection } from 'src/app/core/enums/sort-direction';
+import FilterItem from 'src/app/core/models/helpers/filter-item';
+import PagedResponse from 'src/app/core/requests/common/paged-response';
+import ProductItemDto from 'src/app/core/models/products/product-item-dto';
 
 @Component({
 	selector: 'app-catalog',
@@ -20,11 +21,13 @@ export class CatalogComponent implements OnInit {
 	private _category: ProductCategory;
 	private _currentPage: number = 1;
 
-	catalog: CatalogVm;
+	catalog: PagedResponse<ProductItemDto>;
 	types: FilterItem[] = [];
 	brands: FilterItem[] = [];
 	categoryName: string;
 	sortDirection: SortDirection;
+	minPrice: number;
+	maxPrice: number;
 
 	constructor(
 		private _router: Router,
@@ -34,19 +37,15 @@ export class CatalogComponent implements OnInit {
 		private _typesService: ProductTypesService
 	) {}
 
-	get sortDirectionType(): typeof SortDirection {
-		return SortDirection;
+	get pageLoaded(): boolean {
+		return this.brands.length > 0 && this.types.length > 0 && !!this.catalog;
 	}
 
 	get applyedFilters(): FilterItem[] {
 		return [
-			...this.brands.filter(x => x.checked),
-			...this.types.filter(x => x.checked),
+			...this.brands.filter(x => x.selected),
+			...this.types.filter(x => x.selected),
 		];
-	}
-
-	get filtersLoaded(): boolean {
-		return this.brands.length > 0 && this.types.length > 0;
 	}
 
 	ngOnInit(): void {
@@ -56,11 +55,18 @@ export class CatalogComponent implements OnInit {
 			this._category = this.getCategory(params);
 			this.categoryName = this.getCategoryName(this._category);
 			this.sortDirection = this.getSortDirection(params);
+			this.minPrice = this.getMinPrice(params);
+			this.maxPrice = this.getMaxPrice(params);
 
 			this.loadProducts();
 			this.loadTypes();
 			this.loadBrands();
 		});
+	}
+
+	gotoPage(pageNumber: number): void {
+		this._currentPage = pageNumber;
+		this.loadProducts();
 	}
 
 	private getTypes(params: ParamMap): string[] {
@@ -76,15 +82,7 @@ export class CatalogComponent implements OnInit {
 	}
 
 	private getCategory(params: ParamMap): ProductCategory {
-		const categories = new Map([
-			['mens', ProductCategory.mens],
-			['womens', ProductCategory.womens],
-			['kids', ProductCategory.kids],
-		]);
-
-		const category: string = params.get('category');
-
-		return categories.get(category);
+		return ProductCategory[params.get('category')];
 	}
 
 	private getCategoryName(category: ProductCategory): string {
@@ -99,10 +97,20 @@ export class CatalogComponent implements OnInit {
 
 	private getSortDirection(params: ParamMap): SortDirection {
 		const sortDir = SortDirection[params.get('sort')];
-		return sortDir === undefined ? SortDirection.pricedown : sortDir;
+		return sortDir === undefined ? SortDirection.priceup : sortDir;
 	}
 
-	loadProducts(): void {
+	private getMinPrice(params: ParamMap): number {
+		if (!params.has('minprice')) return null;
+		return +params.get('minprice');
+	}
+
+	private getMaxPrice(params: ParamMap): number {
+		if (!params.has('maxprice')) return null;
+		return +params.get('maxprice');
+	}
+
+	private loadProducts(): void {
 		const request: GetAllProductsRequest = {
 			pageNumber: this._currentPage,
 			pageSize: 9,
@@ -110,6 +118,8 @@ export class CatalogComponent implements OnInit {
 			brands: this._selectedBrands,
 			category: this._category,
 			sortDirection: this.sortDirection,
+			minPrice: this.minPrice,
+			maxPrice: this.maxPrice,
 		};
 
 		this._productsService.getAllPaged(request).subscribe(catalog => {
@@ -119,46 +129,35 @@ export class CatalogComponent implements OnInit {
 
 	private loadTypes(): void {
 		this._typesService.getAll().subscribe(types => {
-			const items = [];
-
-			types.forEach(x => {
-				const item = new FilterItem(() => this.applyTypeFilter());
-				item.id = x.id;
-				item.name = x.name;
-				item.checked = this._selectedTypes.some(id => id == x.id);
-				items.push(item);
+			this.types = types.map(x => {
+				return {
+					id: x.id,
+					name: x.name,
+					selected: this._selectedTypes.some(id => id == x.id),
+					apply: () => this.applyTypeFilter(),
+				};
 			});
-
-			this.types = items;
 		});
 	}
 
 	private loadBrands(): void {
 		this._brandsService.getAll().subscribe(brands => {
-			const items = [];
-
-			brands.forEach(x => {
-				const item = new FilterItem(() => this.applyBrandFilter());
-				item.id = x.id;
-				item.name = x.name;
-				item.checked = this._selectedBrands.some(id => id == x.id);
-				items.push(item);
+			this.brands = brands.map(x => {
+				return {
+					id: x.id,
+					name: x.name,
+					selected: this._selectedBrands.some(id => id == x.id),
+					apply: () => this.applyBrandFilter(),
+				};
 			});
-
-			this.brands = items;
 		});
 	}
 
-	gotoPage(pageNumber: number): void {
-		this._currentPage = pageNumber;
-		this.loadProducts();
-	}
-
-	applyTypeFilter(): void {
+	private applyTypeFilter(): void {
 		this.applyFilters('types', this.types);
 	}
 
-	applyBrandFilter(): void {
+	private applyBrandFilter(): void {
 		this.applyFilters('brands', this.brands);
 	}
 
@@ -166,7 +165,7 @@ export class CatalogComponent implements OnInit {
 		this._currentPage = 1;
 
 		let paramValue: string = filters
-			.filter(x => x.checked)
+			.filter(x => x.selected)
 			.map(x => x.id)
 			.join(';');
 

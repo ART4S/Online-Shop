@@ -5,14 +5,13 @@ using Application.Common.Enums;
 using Application.Common.Pagination;
 using Application.Services;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Domian.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.Products.GetAllPaged
 {
-    public class GetAllPagedHandler : IRequestHandler<GetAllPagedQuery, CatalogVm>
+    public class GetAllPagedHandler : IRequestHandler<GetAllPagedQuery, PagedResponse<ProductItemDto>>
     {
         private readonly IDbContext _db;
         private readonly IMapper _mapper;
@@ -23,27 +22,24 @@ namespace Application.Features.Products.GetAllPaged
             _mapper = mapper;
         }
 
-        public async Task<CatalogVm> Handle(
+        public async Task<PagedResponse<ProductItemDto>> Handle(
             GetAllPagedQuery request,
             CancellationToken cancellationToken)
         {
             IQueryable<Product> products = _db.Products.AsNoTracking();
 
-            products = ApplyFilters(request, products);
+            products = ApplyFilters(products, request);
 
-            if (request.SortDirection.HasValue)
-                products = ApplySort(request.SortDirection.Value, products);
+            PagedResponse<ProductItemDto> response = 
+                await products.PaginateAndProjectAsync(
+                    request,
+                    _mapper,
+                    x => ApplySort(x, request.SortDirection));
 
-            CatalogVm vm = await products
-                .ProjectTo<ProductItemDto>(_mapper.ConfigurationProvider)
-                .PaginateAsync(request);
-
-            vm.TotalCount = await products.CountAsync(cancellationToken);
-
-            return vm;
+            return response;
         }
 
-        private static IQueryable<Product> ApplyFilters(GetAllPagedQuery request, IQueryable<Product> products)
+        private static IQueryable<Product> ApplyFilters(IQueryable<Product> products, GetAllPagedQuery request)
         {
             if (request.Types.Count > 0)
                 products = products.Where(x => request.Types.Contains(x.TypeId));
@@ -54,10 +50,16 @@ namespace Application.Features.Products.GetAllPaged
             if (request.Category.HasValue)
                 products = products.Where(x => x.Category == request.Category);
 
+            if (request.MinPrice.HasValue)
+                products = products.Where(x => x.Price >= request.MinPrice);
+
+            if (request.MaxPrice.HasValue)
+                products = products.Where(x => x.Price <= request.MaxPrice);
+
             return products;
         }
 
-        private static IQueryable<Product> ApplySort(SortDirection direction, IQueryable<Product> products)
+        private static IQueryable<Product> ApplySort(IQueryable<Product> products, SortDirection? direction)
         {
             return direction switch
             {

@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-start">
+  <p>sort by:</p>
+
+  <div
+    class="sort-link"
+    [routerLink]=""
+    [queryParams]="{ sort: 'priceup' }"
+    queryParamsHandling="merge"
+    *ngIf="
+      sortDirection !== sortDirectionType.priceup &&
+      sortDirection !== sortDirectionType.pricedown
+    "
+  >
+    price
+  </div>
+
+  <div
+    class="sort-link bg-primary text-white rounded-pill"
+    [routerLink]=""
+    [queryParams]="{ sort: 'pricedown' }"
+    queryParamsHandling="merge"
+    *ngIf="sortDirection === sortDirectionType.priceup"
+  >
+    price
+    <img src="assets/svg/arrow-up.svg" alt="" width="16" height="16" />
+  </div>
+
+  <div
+    class="sort-link bg-primary text-white rounded-pill"
+    [routerLink]=""
+    [queryParams]="{ sort: 'priceup' }"
+    queryParamsHandling="merge"
+    *ngIf="sortDirection === sortDirectionType.pricedown"
+  >
+    price
+    <img src="assets/svg/arrow-down.svg" alt="" width="16" height="16" />
+  </div>
+
+  <div
+    [ngClass]="{
+      'sort-link rounded-pill': true,
+      'bg-primary text-white': sortDirection === sortDirectionType.newly
+    }"
+    [routerLink]=""
+    [queryParams]="{ sort: 'newly' }"
+    queryParamsHandling="merge"
+  >
+    update date
+  </div>
+</div>

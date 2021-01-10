@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-	selector: 'app-navbar',
-	templateUrl: './navbar.component.html',
-	styleUrls: ['./navbar.component.scss'],
+	selector: 'app-catalog-navbar',
+	templateUrl: './catalog-navbar.component.html',
+	styleUrls: ['./catalog-navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class CatalogNavbarComponent implements OnInit {
 	@Input() currentPage: number;
 	@Input() totalPages: number;
 

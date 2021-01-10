@@ -1,50 +1,40 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-2">
-      <!-- Spinner -->
-      <div
-        class="vh-100 d-flex justify-content-center align-items-center"
-        *ngIf="!filtersLoaded"
-      >
-        <app-spinner></app-spinner>
-      </div>
+<div
+  class="vh-100 d-flex justify-content-center align-items-center"
+  *ngIf="!pageLoaded"
+>
+  <app-spinner></app-spinner>
+</div>
 
+<div class="container-fluid" *ngIf="pageLoaded">
+  <div class="row">
+    <div class="col-md-2 justify-content-center">
       <div class="py-3 text-center">
         <h2>{{ categoryName }}</h2>
       </div>
 
-      <!-- Filters -->
-      <div class="accordion" *ngIf="filtersLoaded">
-        <app-filter-section
-          sectionName="Types"
-          [filterItems]="types"
-        ></app-filter-section>
-
-        <app-filter-section
-          sectionName="Brands"
-          [filterItems]="brands"
-        ></app-filter-section>
+      <div class="accordion">
+        <app-types-filter class="mx-2" [types]="types"> </app-types-filter>
+        <app-brands-filter class="mx-2" [brands]="brands"> </app-brands-filter>
+        <app-price-filter class="mx-2" [minPrice]="minPrice" [maxPrice]="maxPrice"></app-price-filter>
       </div>
     </div>
 
-    <div class="col-10">
-      <div class="p-2">
-        <span class="badge rounded-pill bg-success" *ngIf="catalog">
-          {{ catalog.totalCount }} results
-        </span>
+    <div class="col-md-10">
+      <div class="badge rounded-pill bg-success" *ngIf="catalog">
+        {{ catalog.totalItemsCount }} results
       </div>
 
       <!-- Applyed filters -->
-      <div
-        class="d-flex flex-wrap justify-content-start py-3"
-        *ngIf="filtersLoaded"
-      >
-        <app-filter-button
-          class="m-1"
+      <div class="d-flex flex-wrap justify-content-start py-3">
+        <button
+          class="btn btn-primary rounded-pill m-1"
+          type="button"
+          (click)="filter.selected = !filter.selected; filter.apply()"
           *ngFor="let filter of applyedFilters"
-          [description]="filter.name"
-          (click)="filter.checked = !filter.checked; filter.update()"
-        ></app-filter-button>
+        >
+          <img src="assets/svg/x.svg" alt="filter" />
+          {{ filter.name | lowercase }}
+        </button>
       </div>
 
       <!-- No items message -->
@@ -56,71 +46,26 @@
       </div>
 
       <main *ngIf="catalog && catalog.items.length">
-        <!-- Sorting -->
         <div class="d-flex justify-content-start">
-          <p>sort by:</p>
-
-          <div
-            class="sort-link"
-            [routerLink]=""
-            [queryParams]="{ sort: 'priceup' }"
-            queryParamsHandling="merge"
-            *ngIf="
-              sortDirection !== sortDirectionType.priceup &&
-              sortDirection !== sortDirectionType.pricedown
-            "
-          >
-            price
-          </div>
-
-          <div
-            class="sort-link bg-primary text-white rounded-pill"
-            [routerLink]=""
-            [queryParams]="{ sort: 'pricedown' }"
-            queryParamsHandling="merge"
-            *ngIf="sortDirection === sortDirectionType.priceup"
-          >
-            price
-            <img src="assets/svg/arrow-up.svg" alt="" />
-          </div>
-
-          <div
-            class="sort-link bg-primary text-white rounded-pill"
-            [routerLink]=""
-            [queryParams]="{ sort: 'priceup' }"
-            queryParamsHandling="merge"
-            *ngIf="sortDirection === sortDirectionType.pricedown"
-          >
-            price
-            <img src="assets/svg/arrow-down.svg" alt="" />
-          </div>
-
-          <div
-            [ngClass]="{
-              'sort-link rounded-pill': true,
-              'bg-primary text-white': sortDirection === sortDirectionType.newly
-            }"
-            [routerLink]=""
-            [queryParams]="{ sort: 'newly' }"
-            queryParamsHandling="merge"
-          >
-            update date
-          </div>
+          <app-catalog-sorter
+            [sortDirection]="sortDirection"
+          ></app-catalog-sorter>
         </div>
 
         <!-- Navigation -->
-        <app-navbar
+        <app-catalog-navbar
           class="py-3"
           [currentPage]="catalog.currentPage"
           [totalPages]="catalog.totalPages"
           (pageChange)="gotoPage($event)"
-        ></app-navbar>
+        ></app-catalog-navbar>
 
         <!-- Items -->
-        <section class="catalog m-auto">
+        <section class="m-auto row">
           <app-catalog-item
-            *ngFor="let item of catalog.items"
+            class="col-md-4 col-sm-6 col-12 my-2"
             [item]="item"
+            *ngFor="let item of catalog.items"
           ></app-catalog-item>
         </section>
       </main>

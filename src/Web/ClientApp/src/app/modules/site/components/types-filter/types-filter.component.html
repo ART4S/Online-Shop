@@ -8,7 +8,7 @@
       aria-expanded="false"
       aria-controls="typeCollapse"
     >
-      {{ sectionName }}
+      Types
     </button>
   </h3>
 
@@ -18,17 +18,17 @@
     aria-labelledby="typeCollapse"
   >
     <div class="accordion-body">
-      <div class="form-check" *ngFor="let item of filterItems">
+      <div class="form-check" *ngFor="let type of types">
         <input
           class="form-check-input"
           type="checkbox"
-          id="{{ sectionName + item.id }}"
-          [(ngModel)]="item.checked"
-          (change)="item.update()"
+          id="{{ 'type-filter-' + type.id }}"
+          [(ngModel)]="type.selected"
+          (change)="type.apply()"
         />
 
-        <label class="form-check-label" for="{{ sectionName + item.id }}">{{
-          item.name
+        <label class="form-check-label" for="{{ 'type-filter-' + type.id }}">{{
+          type.name
         }}</label>
       </div>
     </div>

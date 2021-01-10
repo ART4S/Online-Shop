@@ -1,0 +1,40 @@
+<div class="accordion-item">
+  <h3 class="accordion-header">
+    <button
+      class="accordion-button"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#priceCollapse"
+      aria-expanded="false"
+      aria-controls="priceCollapse"
+    >
+      Price
+    </button>
+  </h3>
+
+  <div
+    class="accordion-collapse collapse show"
+    id="priceCollapse"
+    aria-labelledby="priceCollapse"
+  >
+    <div class="accordion-body">
+      <div class="d-flex">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="min"
+          [(ngModel)]="minPrice"
+          (focusout)="applyFilter()"
+        />
+
+        <input
+          type="text"
+          class="form-control"
+          placeholder="max"
+          [(ngModel)]="maxPrice"
+          (focusout)="applyFilter()"
+        />
+      </div>
+    </div>
+  </div>
+</div>
