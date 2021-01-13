@@ -5,10 +5,11 @@ import { CoreRoutingModule } from './core-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { HeaderComponent } from './components/header/header.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @NgModule({
-	exports: [HeaderComponent, SpinnerComponent],
+	exports: [HeaderComponent, SpinnerComponent, BreadcrumbComponent],
 	imports: [CommonModule, HttpClientModule, CoreRoutingModule],
-	declarations: [HeaderComponent, SpinnerComponent],
+	declarations: [HeaderComponent, SpinnerComponent, BreadcrumbComponent],
 })
 export class CoreModule {}

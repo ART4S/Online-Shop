@@ -4,7 +4,7 @@ import { ExtendedTimeAgoPipe } from './pipes/extended-time-ago-pipe';
 
 @NgModule({
 	declarations: [ExtendedTimeAgoPipe],
-	exports: [ExtendedTimeAgoPipe],
+	exports: [CommonModule, ExtendedTimeAgoPipe],
 	imports: [CommonModule],
 })
 export class SharedModule {}

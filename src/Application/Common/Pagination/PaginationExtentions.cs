@@ -35,7 +35,7 @@ namespace Application.Common.Pagination
             return result;
         }
 
-        public static async Task<PagedResponse<TDto>> PaginateAndProjectAsync<TEntity, TDto>(
+        public static async Task<PagedResponse<TDto>> PaginateAndMapAsync<TEntity, TDto>(
             this IQueryable<TEntity> source, 
             PagedQuery<TDto> request, 
             IMapper mapper,

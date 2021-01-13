@@ -1,41 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { ProductBrandsService } from 'src/app/core/services/product-brands.service';
 import { ProductTypesService } from 'src/app/core/services/product-types.service';
 import GetAllProductsRequest from 'src/app/core/requests/products/get-all-paged-request';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import {
+	ActivatedRoute,
+	NavigationEnd,
+	ParamMap,
+	Router,
+} from '@angular/router';
 import { ProductCategory } from '../../../../core/enums/product-category';
 import { SortDirection } from 'src/app/core/enums/sort-direction';
 import FilterItem from 'src/app/core/models/helpers/filter-item';
 import PagedResponse from 'src/app/core/requests/common/paged-response';
 import ProductItemDto from 'src/app/core/models/products/product-item-dto';
+import { filter, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-catalog',
 	templateUrl: './catalog.component.html',
 	styleUrls: ['./catalog.component.scss'],
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent implements OnInit, OnDestroy {
 	private _selectedTypes: string[] = [];
 	private _selectedBrands: string[] = [];
 	private _category: ProductCategory;
 	private _currentPage: number = 1;
 
+	private destroy$ = new Subject();
+
 	catalog: PagedResponse<ProductItemDto>;
 	types: FilterItem[] = [];
 	brands: FilterItem[] = [];
-	categoryName: string;
+	title: string;
 	sortDirection: SortDirection;
 	minPrice: number;
 	maxPrice: number;
-
-	constructor(
-		private _router: Router,
-		private _activatedRoute: ActivatedRoute,
-		private _productsService: ProductsService,
-		private _brandsService: ProductBrandsService,
-		private _typesService: ProductTypesService
-	) {}
+	pageSize: number = 9;
 
 	get pageLoaded(): boolean {
 		return this.brands.length > 0 && this.types.length > 0 && !!this.catalog;
@@ -48,20 +50,50 @@ export class CatalogComponent implements OnInit {
 		];
 	}
 
-	ngOnInit(): void {
-		this._activatedRoute.queryParamMap.subscribe(params => {
-			this._selectedTypes = this.getTypes(params);
-			this._selectedBrands = this.getBrands(params);
-			this._category = this.getCategory(params);
-			this.categoryName = this.getCategoryName(this._category);
-			this.sortDirection = this.getSortDirection(params);
-			this.minPrice = this.getMinPrice(params);
-			this.maxPrice = this.getMaxPrice(params);
+	get displayItemsMessage(): string {
+		if (this.catalog.totalItemsCount)
+			return `${(this.catalog.currentPage - 1) * this.pageSize + 1}-${
+				(this.catalog.currentPage - 1) * this.pageSize +
+				Math.min(this.pageSize, this.catalog.pageSize)
+			} from ${this.catalog.totalItemsCount}`;
+		return '0 items';
+	}
 
-			this.loadProducts();
-			this.loadTypes();
-			this.loadBrands();
-		});
+	constructor(
+		private _router: Router,
+		private _activatedRoute: ActivatedRoute,
+		private _productsService: ProductsService,
+		private _brandsService: ProductBrandsService,
+		private _typesService: ProductTypesService
+	) {
+		this.init();
+	}
+
+	private init(): void {
+		this._router.events
+			.pipe(
+				takeUntil(this.destroy$),
+				filter(x => x instanceof NavigationEnd)
+			)
+			.subscribe(() => {
+				this._selectedTypes = this.getTypes();
+				this._selectedBrands = this.getBrands();
+				this._category = this.getCategory();
+				this.title = this.getTitle();
+				this.sortDirection = this.getSortDirection();
+				this.minPrice = this.getMinPrice();
+				this.maxPrice = this.getMaxPrice();
+
+				this.loadProducts();
+				this.loadTypes();
+				this.loadBrands();
+			});
+	}
+
+	ngOnInit(): void {}
+
+	ngOnDestroy(): void {
+		this.destroy$.next();
 	}
 
 	gotoPage(pageNumber: number): void {
@@ -69,43 +101,43 @@ export class CatalogComponent implements OnInit {
 		this.loadProducts();
 	}
 
-	private getTypes(params: ParamMap): string[] {
-		return this.getFilters('types', params);
+	private getTypes(): string[] {
+		return this.getFilters('types');
 	}
 
-	private getBrands(params: ParamMap): string[] {
-		return this.getFilters('brands', params);
+	private getBrands(): string[] {
+		return this.getFilters('brands');
 	}
 
-	private getFilters(paramName: string, params: ParamMap): string[] {
-		return (params.get(paramName) ?? '').split(';');
+	private getFilters(paramName: string): string[] {
+		const params: ParamMap = this._activatedRoute.snapshot.queryParamMap;
+		if (!params.has(paramName)) return [];
+		return params.get(paramName).split(';');
 	}
 
-	private getCategory(params: ParamMap): ProductCategory {
-		return ProductCategory[params.get('category')];
+	private getCategory(): ProductCategory {
+		const category: string = this._activatedRoute.snapshot.data.category;
+		return ProductCategory[category];
 	}
 
-	private getCategoryName(category: ProductCategory): string {
-		const categoryNames = new Map([
-			[ProductCategory.mens, 'Mens'],
-			[ProductCategory.womens, 'Womens'],
-			[ProductCategory.kids, 'Kids'],
-		]);
-
-		return categoryNames.get(category) ?? 'All';
+	private getTitle(): string {
+		return this._activatedRoute.snapshot.data.title;
 	}
 
-	private getSortDirection(params: ParamMap): SortDirection {
+	private getSortDirection(): SortDirection {
+		const params: ParamMap = this._activatedRoute.snapshot.queryParamMap;
 		const sortDir = SortDirection[params.get('sort')];
 		return sortDir === undefined ? SortDirection.priceup : sortDir;
 	}
 
-	private getMinPrice(params: ParamMap): number {
+	private getMinPrice(): number {
+		const params: ParamMap = this._activatedRoute.snapshot.queryParamMap;
 		if (!params.has('minprice')) return null;
 		return +params.get('minprice');
 	}
 
-	private getMaxPrice(params: ParamMap): number {
+	private getMaxPrice(): number {
+		const params: ParamMap = this._activatedRoute.snapshot.queryParamMap;
 		if (!params.has('maxprice')) return null;
 		return +params.get('maxprice');
 	}
@@ -113,7 +145,7 @@ export class CatalogComponent implements OnInit {
 	private loadProducts(): void {
 		const request: GetAllProductsRequest = {
 			pageNumber: this._currentPage,
-			pageSize: 9,
+			pageSize: this.pageSize,
 			types: this._selectedTypes,
 			brands: this._selectedBrands,
 			category: this._category,

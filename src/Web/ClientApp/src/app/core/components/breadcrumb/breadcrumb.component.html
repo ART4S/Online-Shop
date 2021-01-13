@@ -1,0 +1,12 @@
+<ol class="breadcrumb">
+  <li
+    class="breadcrumb-item"
+    [class.active]="i !== breadcrumbs.length - 1"
+    *ngFor="let breadcrumb of breadcrumbs; let i = index"
+  >
+    <a *ngIf="i !== breadcrumbs.length - 1" routerLink="{{ breadcrumb.url }}">{{
+      breadcrumb.name
+    }}</a>
+    <span *ngIf="i == breadcrumbs.length - 1">{{ breadcrumb.name }}</span>
+  </li>
+</ol>

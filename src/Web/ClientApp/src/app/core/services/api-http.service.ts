@@ -1,7 +1,7 @@
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import AppConfig from 'src/app/app-config';
 
 @Injectable({
@@ -10,8 +10,8 @@ import AppConfig from 'src/app/app-config';
 export class ApiHttpService {
 	private _baseUrl: string;
 
-	constructor(appConfig: AppConfig, private _http: HttpClient) {
-		this._baseUrl = appConfig.baseUrl;
+	constructor(private _http: HttpClient) {
+		this._baseUrl = 'https://localhost:5001';
 	}
 
 	get<T>(url: string, options?: unknown) {

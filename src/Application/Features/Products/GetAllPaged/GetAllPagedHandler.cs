@@ -31,10 +31,8 @@ namespace Application.Features.Products.GetAllPaged
             products = ApplyFilters(products, request);
 
             PagedResponse<ProductItemDto> response = 
-                await products.PaginateAndProjectAsync(
-                    request,
-                    _mapper,
-                    x => ApplySort(x, request.SortDirection));
+                await products.PaginateAndMapAsync(
+                    request, _mapper, x => ApplySort(x, request.SortDirection));
 
             return response;
         }

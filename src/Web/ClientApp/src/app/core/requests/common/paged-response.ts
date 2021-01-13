@@ -3,7 +3,5 @@ export default class PagedResponse<T> {
 	currentPage: number;
 	totalPages: number;
 	totalItemsCount: number;
-	hasPrevPage: boolean;
-	hasNextPage: number;
 	items: T[] = [];
 }
