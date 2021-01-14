@@ -25,6 +25,7 @@
           placeholder="min"
           [(ngModel)]="minPrice"
           (focusout)="applyFilter()"
+          (keyup.enter)="applyFilter()"
         />
 
         <input
@@ -33,6 +34,7 @@
           placeholder="max"
           [(ngModel)]="maxPrice"
           (focusout)="applyFilter()"
+          (keyup.enter)="applyFilter()"
         />
       </div>
     </div>

@@ -1,7 +1,19 @@
-import { Routes } from '@angular/router';
-import { CatalogItemDetailsComponent } from './pages/catalog-item-details/catalog-item-details.component';
+import { Route, Routes } from '@angular/router';
 import { CatalogComponent } from './pages/catalog/catalog.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { SiteComponent } from './site.component';
+
+const productDetailsRoute: Route = {
+	path: ':id',
+	data: { breadcrumb: null },
+	children: [
+		{
+			path: 'details',
+			component: ProductDetailsComponent,
+			data: { breadcrumb: 'Product details' },
+		},
+	],
+};
 
 export const routes: Routes = [
 	{
@@ -14,29 +26,50 @@ export const routes: Routes = [
 				children: [
 					{
 						path: '',
-						component: CatalogComponent,
 						pathMatch: 'full',
+						component: CatalogComponent,
 						data: { title: 'All', breadcrumb: null },
 					},
 					{
 						path: 'mens',
-						component: CatalogComponent,
-						data: { category: 'mens', title: "Men's", breadcrumb: 'Mens' },
+						data: { breadcrumb: 'Mens' },
+						children: [
+							{
+								path: '',
+								pathMatch: 'full',
+								component: CatalogComponent,
+								data: { category: 'mens', title: "Men's" },
+							},
+							productDetailsRoute,
+						],
 					},
 					{
 						path: 'womens',
-						component: CatalogComponent,
-						data: { category: 'womens', title: "Women's", breadcrumb: 'Womens' },
+						data: { breadcrumb: 'Womens' },
+						children: [
+							{
+								path: '',
+								pathMatch: 'full',
+								component: CatalogComponent,
+								data: { category: 'womens', title: "Women's", breadcrumb: null },
+							},
+							productDetailsRoute,
+						],
 					},
 					{
 						path: 'kids',
-						component: CatalogComponent,
-						data: { category: 'kids', title: "Kid's", breadcrumb: 'Kids' },
+						data: { breadcrumb: 'Kids' },
+						children: [
+							{
+								path: '',
+								pathMatch: 'full',
+								component: CatalogComponent,
+								data: { category: 'kids', title: "Kid's" },
+							},
+							productDetailsRoute,
+						],
 					},
-					{
-						path: ':id',
-						children: [{ path: 'details', component: CatalogItemDetailsComponent }],
-					},
+					productDetailsRoute,
 				],
 			},
 		],

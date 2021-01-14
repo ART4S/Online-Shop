@@ -9,9 +9,9 @@ import { CatalogNavbarComponent } from './components/catalog-navbar/catalog-navb
 import { CatalogSorterComponent } from './components/catalog-sorter/catalog-sorter.component';
 import { PriceFilterComponent } from './components/price-filter/price-filter.component';
 import { TypesFilterComponent } from './components/types-filter/types-filter.component';
-import { CatalogItemDetailsComponent } from './pages/catalog-item-details/catalog-item-details.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { FormsModule } from '@angular/forms';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 @NgModule({
 	declarations: [
@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
 		CatalogSorterComponent,
 		PriceFilterComponent,
 		TypesFilterComponent,
-		CatalogItemDetailsComponent,
+		ProductDetailsComponent,
 	],
 	imports: [SharedModule, FormsModule, SiteRoutingModule, CoreModule],
 })

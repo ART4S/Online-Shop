@@ -10,16 +10,16 @@ namespace Web.Controllers
     [Produces("application/json")]
     public class ProductsController : BaseController
     {
-        [HttpGet]
-        public async Task<IActionResult> GetAllPaged(GetAllPagedQuery query)
-        {
-            return Ok(await Mediator.Send(query));
-        }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             return Ok(await Mediator.Send(new GetByIdQuery { Id = id }));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllPaged(GetAllPagedQuery query)
+        {
+            return Ok(await Mediator.Send(query));
         }
     }
 }

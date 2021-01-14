@@ -1,0 +1,18 @@
+.product {
+  &__name {
+    border-bottom: 1px solid #dedede;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &__description {
+    padding: 2rem 0;
+  }
+
+  &__price {
+    padding: 1rem;
+    border: 1px dashed #dedede;
+  }
+}

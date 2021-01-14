@@ -18,3 +18,23 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border {
+  &-1 {
+    border: 1px solid green;
+  }
+
+  &-2 {
+    border: 1px dotted blue;
+  }
+
+  &-3 {
+    border: 1px dashed red;
+  }
+}

@@ -46,11 +46,8 @@
       </div>
 
       <!-- No items message -->
-      <div
-        class="vh-100 d-flex justify-content-center align-items-center"
-        *ngIf="catalog && !catalog.items.length"
-      >
-        <h1 class="display-4">There are no items avaliable yet</h1>
+      <div class="vh-100 center" *ngIf="catalog && !catalog.items.length">
+        <h1 class="display-4">There are no items available yet</h1>
       </div>
 
       <main *ngIf="catalog && catalog.items.length">

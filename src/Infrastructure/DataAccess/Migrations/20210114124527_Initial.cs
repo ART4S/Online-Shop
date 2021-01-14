@@ -42,6 +42,7 @@ namespace Infrastructure.DataAccess.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
+                    Details = table.Column<string>(type: "text", nullable: true),
                     Price = table.Column<decimal>(type: "numeric", nullable: true),
                     PictureUrl = table.Column<string>(type: "text", nullable: true),
                     BrandId = table.Column<int>(type: "integer", nullable: false),
