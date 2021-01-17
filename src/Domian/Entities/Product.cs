@@ -9,7 +9,8 @@ namespace Domian.Entities
         public string Description { get; set; }
         public string Details { get; set; }
         public decimal? Price { get; set; }
-        public string PictureUrl { get; set; }
+        public string MainPictureId { get; set; }
+        public string[] PictureIds { get; set; }
 
         public int BrandId { get; set; }
         public ProductBrand Brand { get; set; }

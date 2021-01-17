@@ -44,11 +44,11 @@ export class BreadcrumbService {
 			const childRoute = currentRoute.firstChild;
 			if (childRoute.url.length) {
 				url += `/${childRoute.url[0]}`;
+			}
 
-				const name = childRoute.data.breadcrumb;
-				if (name) {
-					breadcrumbs.push({ name: name, url: url });
-				}
+			const name = childRoute.data.breadcrumb;
+			if (name) {
+				breadcrumbs.push({ name: name, url: url });
 			}
 
 			currentRoute = childRoute;

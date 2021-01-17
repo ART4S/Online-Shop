@@ -7,7 +7,8 @@ namespace Application.Features.Products.GetAllPaged
     {
         public GetAllPagedProfile()
         {
-            CreateMap<Product, ProductItemDto>(MemberList.Destination);
+            CreateMap<Product, ProductItemDto>(MemberList.Destination)
+                .ForMember(src => src.PictureUrl, opt => opt.MapFrom(x => x.MainPictureId));
         }
     }
 }

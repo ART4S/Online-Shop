@@ -1,0 +1,147 @@
+﻿[
+  {
+    "id": 1,
+    "name": ".NET Bot Black Sweatshirt",
+    "mainPictureId": "64990f29-561e-4427-aa14-4d533a858e5e",
+    "price": 0,
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "brandId": 2,
+    "typeId": 4,
+    "category": 0,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 2,
+    "name": ".NET Black & White Mug",
+    "price": 1.1,
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "mainPictureId": "2d59f26b-b8dd-448d-b150-5792c54ed8b6",
+    "brandId": 2,
+    "typeId": 1,
+    "category": 0,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 3,
+    "name": "Prism White T-Shirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "mainPictureId": "e0294e8f-b407-4531-9a6f-d1def63f4255",
+    "price": 22.22,
+    "brandId": 4,
+    "typeId": 2,
+    "category": 0,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 4,
+    "name": ".NET Foundation Sweatshirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "mainPictureId": "c6621003-78f9-45d9-a38c-b8cbd1b3788a",
+    "price": 333.333,
+    "brandId": 2,
+    "typeId": 4,
+    "category": 1,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 5,
+    "name": "Roslyn Red Sheet",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "mainPictureId": "e4f3efed-f88f-42ae-8c57-171ac12c7819",
+    "price": 4444.4444,
+    "brandId": 3,
+    "typeId": 3,
+    "category": 1,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 6,
+    "name": ".NET Blue Sweatshirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "mainPictureId": "fd9e1b35-f2fc-4e84-bb45-d9dc75139ea0",
+    "price": 55555.55555,
+    "brandId": 2,
+    "typeId": 4,
+    "category": 1,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 7,
+    "name": "Roslyn Red T-Shirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "mainPictureId": "4a1c194d-7522-48b6-9155-9f0084e91c93",
+    "price": 666666.666666,
+    "brandId": 3,
+    "typeId": 2,
+    "category": 2,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 8,
+    "name": "Kudu Purple Sweatshirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "mainPictureId": "66149b27-85dd-41f6-8af8-09b3366b4ac1",
+    "price": 7.77777,
+    "brandId": 1,
+    "typeId": 4,
+    "category": 2,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 9,
+    "name": "Cup<T> White Mug",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "mainPictureId": "066b945f-0faf-4b31-bed8-4c2396440b63",
+    "price": 8.8888,
+    "brandId": 1,
+    "typeId": 1,
+    "category": 2,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 10,
+    "name": ".NET Foundation Sheet",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "mainPictureId": "b44eed94-f3ef-4eb5-82a9-cdf39fab7f99",
+    "price": 9.9999,
+    "brandId": 2,
+    "typeId": 3,
+    "category": 2,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 11,
+    "name": "Cup<T> Sheet",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "mainPictureId": "9fc03eae-6efe-4c1d-8c98-6a5531b6f79e",
+    "price": 10.10,
+    "brandId": 1,
+    "typeId": 3,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 12,
+    "name": "Prism White TShirt",
+    "description": "Some quick example text to build on the card title and make up the bulk of the card's content.",
+    "mainPictureId": "741a1ade-fe1b-40a8-93da-388a97f5fe48",
+    "price": 11.11,
+    "brandId": 4,
+    "typeId": 2,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc."
+  },
+  {
+    "id": 13,
+    "name": "Lightweight Jacket",
+    "description": "Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.",
+    "mainPictureId": "175668df-68bd-4373-9207-7b19c8bdfd02",
+    "price": 0.1,
+    "brandId": 5,
+    "typeId": 5,
+    "category": 0,
+    "details": "Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.",
+    "pictureIds": [
+      "84ddaba3-10be-4643-9416-3c60cebc60a0",
+      "574e1638-a915-4833-bdfb-9729aeca3c3d"
+    ]
+  }
+]

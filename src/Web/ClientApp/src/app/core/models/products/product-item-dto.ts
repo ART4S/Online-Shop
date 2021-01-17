@@ -9,5 +9,5 @@ export default class ProductItemDto {
 	updateDate: Date;
 	pictureUrl: string;
 	category: ProductCategory;
-	currency: string = 'USD'; // TODO: remove
+	currencyCode: string = 'USD'; // TODO: remove
 }

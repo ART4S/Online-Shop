@@ -5,6 +5,7 @@ export default class ProductInfoDto {
 	description: string;
 	details: string;
 	pictureUrl: string;
+	pictureUrls: string[];
 	brandId: string;
 	brandName: string;
 	currencyCode: string = 'USD'; // TODO: remove

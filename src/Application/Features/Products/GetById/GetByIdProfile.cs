@@ -7,7 +7,9 @@ namespace Application.Features.Products.GetById
     {
         public GetByIdProfile()
         {
-            CreateMap<Product, ProductInfoDto>(MemberList.Destination);
+            CreateMap<Product, ProductInfoDto>(MemberList.Destination)
+                .ForMember(src => src.PictureUrl, opt => opt.Ignore())
+                .ForMember(src => src.PictureUrls, opt => opt.Ignore());
         }
     }
 }

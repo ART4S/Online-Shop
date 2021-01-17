@@ -2,7 +2,8 @@ using System.Text.Json.Serialization;
 using Application.Common.Behaviours;
 using Application.Services;
 using AutoMapper;
-using Infrastructure.DataAccess;
+using Infrastructure.Data;
+using Infrastructure.Data.Files;
 using Infrastructure.Services;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -31,11 +32,12 @@ namespace Web
         {
             services.AddLogging();
 
+            services.AddScoped<IFileRepository, FileRepository>();
+
             services.AddControllers()
                 .AddJsonOptions(configure =>
                 {
                     configure.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-                    configure.JsonSerializerOptions.IgnoreNullValues = true;
                     configure.JsonSerializerOptions.WriteIndented = !Environment.IsProduction();
                 });
 
@@ -68,6 +70,8 @@ namespace Web
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(SaveChangesBehaviour<,>));
 
             services.AddHttpContextAccessor();
+
+            services.AddScoped<IUriBuilder, UriBuilder>();
         }
 
         public void Configure(IApplicationBuilder app)

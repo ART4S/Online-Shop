@@ -15,11 +15,13 @@ namespace Application.Features.Products.GetAllPaged
     {
         private readonly IDbContext _db;
         private readonly IMapper _mapper;
+        private readonly IUriBuilder _uriBuilder;
 
-        public GetAllPagedHandler(IDbContext db, IMapper mapper)
+        public GetAllPagedHandler(IDbContext db, IMapper mapper, IUriBuilder uriBuilder)
         {
             _db = db;
             _mapper = mapper;
+            _uriBuilder = uriBuilder;
         }
 
         public async Task<PagedResponse<ProductItemDto>> Handle(
@@ -33,6 +35,14 @@ namespace Application.Features.Products.GetAllPaged
             PagedResponse<ProductItemDto> response = 
                 await products.PaginateAndMapAsync(
                     request, _mapper, x => ApplySort(x, request.SortDirection));
+
+            foreach (var item in response.Items)
+            {
+                if (!string.IsNullOrEmpty(item.PictureUrl))
+                {
+                    item.PictureUrl = _uriBuilder.GetPictureUrl(item.PictureUrl);
+                }
+            }
 
             return response;
         }

@@ -1,0 +1,43 @@
+<div class="vh-100 center" *ngIf="!product">
+  <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="product">
+  <div class="container-md">
+    <div class="py-2">
+      <app-breadcrumb></app-breadcrumb>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <app-galery
+          [selectedPictureUrl]="product.pictureUrl"
+          [pictureUrls]="product.pictureUrls"
+        ></app-galery>
+      </div>
+
+      <div class="col-md-6">
+        <div class="product__name">
+          <h1>{{ product.name }}</h1>
+
+          <a
+            class="product__link"
+            [routerLink]="['/catalog']"
+            [queryParams]="{ brands: product.brandId }"
+            ><h4>{{ product.brandName }}</h4></a
+          >
+        </div>
+
+        <div class="product__description">
+          <p>{{ product.description }}</p>
+        </div>
+
+        <div class="product__price">
+          <h3 class="text-danger">
+            {{ product.price | currency: product.currencyCode }}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

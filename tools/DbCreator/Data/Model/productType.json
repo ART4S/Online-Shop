@@ -1,0 +1,22 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Mug"
+  },
+  {
+    "id": 2,
+    "name": "T-Shirt"
+  },
+  {
+    "id": 3,
+    "name": "Sheet"
+  },
+  {
+    "id": 4,
+    "name": "Sweatshirt"
+  },
+  {
+    "id": 5,
+    "name": "Jacket" 
+  }
+]

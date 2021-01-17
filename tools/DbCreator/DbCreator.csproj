@@ -22,15 +22,64 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\ProductBrands.json">
+    <None Update="Data\Images\175668df-68bd-4373-9207-7b19c8bdfd02.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Products.json">
+    <None Update="Data\Images\574e1638-a915-4833-bdfb-9729aeca3c3d.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\ProductTypes.json">
+    <None Update="Data\Images\84ddaba3-10be-4643-9416-3c60cebc60a0.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Data\Model\productBrand.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Model\product.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Model\productType.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\066b945f-0faf-4b31-bed8-4c2396440b63.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\2d59f26b-b8dd-448d-b150-5792c54ed8b6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\4a1c194d-7522-48b6-9155-9f0084e91c93.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\64990f29-561e-4427-aa14-4d533a858e5e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\66149b27-85dd-41f6-8af8-09b3366b4ac1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\741a1ade-fe1b-40a8-93da-388a97f5fe48.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\9fc03eae-6efe-4c1d-8c98-6a5531b6f79e.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\b44eed94-f3ef-4eb5-82a9-cdf39fab7f99.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\c6621003-78f9-45d9-a38c-b8cbd1b3788a.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\e0294e8f-b407-4531-9a6f-d1def63f4255.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\e4f3efed-f88f-42ae-8c57-171ac12c7819.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Images\fd9e1b35-f2fc-4e84-bb45-d9dc75139ea0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Images\" />
   </ItemGroup>
 
 </Project>

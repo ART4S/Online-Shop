@@ -1,0 +1,13 @@
+<div class="galery" *ngIf="selectedPictureUrl">
+  <img class="galery__main-pic rounded d-block" [src]="selectedPictureUrl" />
+
+  <div class="galery__pictures">
+    <img
+      class="galery__picture"
+      *ngFor="let pictureUrl of pictureUrls"
+      [class.selected]="pictureUrl == selectedPictureUrl"
+      [src]="pictureUrl"
+      (click)="selectedPictureUrl = pictureUrl"
+    />
+  </div>
+</div>

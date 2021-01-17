@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Domian.Common;
-using Domian.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
+using AppFile = Infrastructure.Data.Files.File;
 
 namespace DbCreator
 {
@@ -20,30 +21,43 @@ namespace DbCreator
 
         public static async Task SeedAsync(DbContext context, ILogger logger)
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "Data");
+            await SeedEntitiesAsync(context, logger);
 
-            string[] files = Directory.GetFiles(path, "*.json", SearchOption.AllDirectories);
+            await SeedImagesAsync(context, logger);
+
+            SetAuditData(context);
+
+            await context.SaveChangesAsync();
+        }
+
+        private static async Task SeedEntitiesAsync(DbContext context, ILogger logger)
+        {
+            logger.LogInformation("start seeding entities");
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Data\\Model");
+
+            string[] files = Directory.GetFiles(path, "*.json");
+
+            Dictionary<string, Type> entityTypes = GetEntityTypes(context);
 
             foreach (string filePath in files)
             {
-                string fileName = Path.GetFileNameWithoutExtension(filePath);
+                string fileName = Path.GetFileNameWithoutExtension(filePath).ToLower();
 
-                if (FileNameToEntityTypeMap.TryGetValue(fileName, out Type entityType))
+                if (entityTypes.TryGetValue(fileName, out Type entityType))
                 {
                     try
                     {
                         await using FileStream file = File.OpenRead(filePath);
 
-                        var entityListType = typeof(List<>).MakeGenericType(entityType);
-
                         var entities = (IEnumerable<object>)await JsonSerializer.DeserializeAsync(
                             file,
-                            entityListType,
+                            typeof(List<>).MakeGenericType(entityType),
                             JsonOptions);
 
                         await context.AddRangeAsync(entities!);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         logger.LogError(ex, "Ошибка в процессе обработки файла");
                     }
@@ -54,9 +68,49 @@ namespace DbCreator
                 }
             }
 
-            SetAuditData(context);
+            logger.LogInformation("finish seeding entities");
+        }
 
-            await context.SaveChangesAsync();
+        private static Dictionary<string, Type> GetEntityTypes(DbContext context)
+        {
+            return context.GetType()
+                .GetProperties()
+                .Where(x => x.PropertyType.IsGenericType
+                    && x.PropertyType.GetGenericTypeDefinition() == typeof(DbSet<>))
+                .Select(x => x.PropertyType.GetGenericArguments()[0])
+                .ToDictionary(x => x.Name.ToLower(), x => x);
+        }
+
+        private static async Task SeedImagesAsync(DbContext context, ILogger logger)
+        {
+            logger.LogInformation("start seeding images");
+
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Data\\Images");
+
+            string[] files = Directory.GetFiles(path, "*.*");
+
+            foreach (string filePath in files)
+            {
+                var file = new AppFile
+                {
+                    Id = Path.GetFileNameWithoutExtension(filePath),
+                    Name = Path.GetFileNameWithoutExtension(filePath),
+                    ContentType = $"image/{Path.GetExtension(filePath).Replace(".", "")}"
+                };
+
+                try
+                {
+                    file.Content = await File.ReadAllBytesAsync(filePath);
+                }
+                catch (Exception e)
+                {
+                    logger.LogError(e, $"error while reading file '{filePath}'");
+                }
+
+                await context.AddAsync(file);
+            }
+
+            logger.LogInformation("finish seeding images");
         }
 
         private static void SetAuditData(DbContext context)
@@ -71,13 +125,5 @@ namespace DbCreator
                 entry.Entity.CreateDate = now;
             }
         }
-
-        private static readonly Dictionary<string, Type> FileNameToEntityTypeMap =
-            new Dictionary<string, Type>
-            {
-                ["Products"] = typeof(Product),
-                ["ProductBrands"] = typeof(ProductBrand),
-                ["ProductTypes"] = typeof(ProductType)
-            };
     }
 }

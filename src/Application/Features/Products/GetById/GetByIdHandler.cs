@@ -13,11 +13,13 @@ namespace Application.Features.Products.GetById
     {
         private readonly IDbContext _db;
         private readonly IMapper _mapper;
+        private readonly IUriBuilder _uriBuilder;
 
-        public GetByIdHandler(IDbContext db, IMapper mapper)
+        public GetByIdHandler(IDbContext db, IMapper mapper, IUriBuilder uriBuilder)
         {
             _db = db;
             _mapper = mapper;
+            _uriBuilder = uriBuilder;
         }
 
         public async Task<ProductInfoDto> Handle(GetByIdQuery request, CancellationToken cancellationToken)
@@ -26,9 +28,25 @@ namespace Application.Features.Products.GetById
                 .AsNoTracking()
                 .Include(x => x.Brand)
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken)
-            ?? throw new ObjectNotFoundException(request.Id);
+            ?? throw new NotFoundException(request.Id);
 
-            return _mapper.Map<ProductInfoDto>(product);
+            var dto = _mapper.Map<ProductInfoDto>(product);
+
+            if (!string.IsNullOrEmpty(product.MainPictureId))
+            {
+                dto.PictureUrl = _uriBuilder.GetPictureUrl(product.MainPictureId);
+                dto.PictureUrls.Add(dto.PictureUrl);
+            }
+
+            if (product.PictureIds is not null)
+            {
+                foreach (string picId in product.PictureIds)
+                {
+                    dto.PictureUrls.Add(_uriBuilder.GetPictureUrl(picId));
+                }
+            }
+
+            return dto;
         }
     }
 }

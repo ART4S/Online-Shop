@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @NgModule({
-	exports: [HeaderComponent, SpinnerComponent, BreadcrumbComponent],
+	exports: [HeaderComponent, BreadcrumbComponent, SpinnerComponent],
 	imports: [CommonModule, HttpClientModule, CoreRoutingModule],
 	declarations: [HeaderComponent, SpinnerComponent, BreadcrumbComponent],
 })

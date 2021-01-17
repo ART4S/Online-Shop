@@ -1,0 +1,23 @@
+.galery {
+  max-width: 500px;
+
+  &__main-pic {
+    max-width: 100%;
+  }
+
+  &__picture {
+    width: 80px;
+    height: auto;
+    overflow: hidden;
+    opacity: 0.6;
+
+    &.selected {
+      opacity: 1;
+    }
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+}
