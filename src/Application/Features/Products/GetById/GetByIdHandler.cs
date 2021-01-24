@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Exceptions;
-using Application.Services;
+using Application.Interfaces;
 using AutoMapper;
 using Domian.Entities;
 using MediatR;

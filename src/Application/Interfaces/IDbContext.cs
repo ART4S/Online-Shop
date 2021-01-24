@@ -4,7 +4,7 @@ using Domian.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace Application.Services
+namespace Application.Interfaces
 {
     public interface IDbContext
     {

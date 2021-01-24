@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Builder;
+using Web.Middlewares;
 
 namespace Web.Configuration
 {
@@ -9,21 +7,7 @@ namespace Web.Configuration
     {
         public static void UseExceptionHandling(this IApplicationBuilder app)
         {
-            app.Use(async (ctx, next) =>
-            {
-                try
-                {
-                    await next();
-                }
-                catch (Exception ex)
-                {
-                    ILogger logger = ctx.RequestServices
-                        .GetService<ILoggerFactory>()!
-                        .CreateLogger("RequestErrors");
-
-                    logger.LogError(ex, "Ошибка запроса");
-                }
-            });
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
         }
     }
 }

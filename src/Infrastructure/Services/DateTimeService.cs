@@ -1,5 +1,5 @@
 ﻿using System;
-using Application.Services;
+using Application.Interfaces;
 
 namespace Infrastructure.Services
 {

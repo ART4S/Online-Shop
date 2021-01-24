@@ -9,7 +9,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 d-flex justify-content-center">
         <app-galery
           [selectedPictureUrl]="product.pictureUrl"
           [pictureUrls]="product.pictureUrls"
@@ -37,7 +37,43 @@
             {{ product.price | currency: product.currencyCode }}
           </h3>
         </div>
+
+        <div class="d-flex py-2">
+          <div class="d-flex">
+            <button
+              class="quantity-button"
+              type="button"
+              (click)="substractQuantity()"
+            >
+              -
+            </button>
+
+            <input
+              class="quantity-field"
+              type="text"
+              readonly
+              [value]="quantity"
+            />
+
+            <button
+              class="quantity-button"
+              type="button"
+              (click)="addQuantity()"
+            >
+              +
+            </button>
+          </div>
+
+          <button class="btn btn-primary mx-3" type="button">
+            ADD TO CART
+          </button>
+        </div>
       </div>
+    </div>
+
+    <div>
+      <h3>Details</h3>
+      <p>{{ product.details }}</p>
     </div>
   </div>
 </div>

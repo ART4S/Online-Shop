@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Requests;
-using Application.Services;
+using Application.Interfaces;
 using Domian.Common;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

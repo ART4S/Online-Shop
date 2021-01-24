@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Enums;
 using Application.Common.Pagination;
-using Application.Services;
+using Application.Interfaces;
 using AutoMapper;
 using Domian.Entities;
 using MediatR;

@@ -16,3 +16,16 @@
     border: 1px dashed #dedede;
   }
 }
+
+.quantity-field {
+  text-align: center;
+}
+
+.quantity-button,
+.quantity-field {
+  width: 55px;
+  height: 55px;
+  padding: 5px;
+  border: none;
+  outline: none;
+}

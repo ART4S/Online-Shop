@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 using Application.Common.Models;
-using Application.Services;
+using Application.Interfaces;
 
 namespace Infrastructure.Data.Files
 {

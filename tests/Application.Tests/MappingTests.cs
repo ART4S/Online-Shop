@@ -5,7 +5,6 @@ using Application.Features.ProductBrands.GetAll;
 using Application.Features.Products.GetAllPaged;
 using Application.Features.Products.GetById;
 using Application.Features.ProductTypes.GetAll;
-using Application.Services;
 using AutoMapper;
 using Domian.Entities;
 using FluentAssertions;

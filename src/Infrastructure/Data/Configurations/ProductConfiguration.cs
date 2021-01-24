@@ -11,11 +11,11 @@ namespace Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            string separator = ",";
-
             var comparer = new ValueComparer<string[]>(
                 (x, y) => x.SequenceEqual(y),
                 x => x.Aggregate(0, (i, j) => HashCode.Combine(i, j.GetHashCode())));
+
+            const string separator = ",";
 
             builder.Property(x => x.PictureIds)
                 .HasConversion(

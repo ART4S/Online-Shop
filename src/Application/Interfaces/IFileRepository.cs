@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Application.Common.Models;
 
-namespace Application.Services
+namespace Application.Interfaces
 {
     public interface IFileRepository
     {

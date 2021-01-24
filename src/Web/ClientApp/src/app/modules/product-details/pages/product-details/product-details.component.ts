@@ -11,6 +11,7 @@ import { ProductsService } from 'src/app/core/services/products.service';
 })
 export class ProductDetailsComponent implements OnInit {
 	product: ProductInfoDto;
+	quantity: number = 1;
 
 	constructor(
 		private _activatedRoute: ActivatedRoute,
@@ -23,5 +24,17 @@ export class ProductDetailsComponent implements OnInit {
 			.subscribe(product => {
 				this.product = product;
 			});
+	}
+
+	substractQuantity(): void {
+		if (this.quantity > 1) {
+			this.quantity--;
+		}
+	}
+
+	addQuantity(): void {
+		if (this.quantity < 100) {
+			this.quantity++;
+		}
 	}
 }

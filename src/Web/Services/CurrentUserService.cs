@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using Application.Services;
+using Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Web.Exceptions;
 

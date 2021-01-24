@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using Application.Common.Behaviours;
-using Application.Services;
+using Application.Interfaces;
 using AutoMapper;
 using Infrastructure.Data;
 using Infrastructure.Data.Files;
@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Web.Configuration;
+using Web.Middlewares;
 using Web.Services;
 
 namespace Web
@@ -72,6 +73,8 @@ namespace Web
             services.AddHttpContextAccessor();
 
             services.AddScoped<IUriBuilder, UriBuilder>();
+
+            services.AddScoped<ExceptionHandlerMiddleware>();
         }
 
         public void Configure(IApplicationBuilder app)

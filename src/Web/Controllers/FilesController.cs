@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Application.Common.Models;
-using Application.Services;
+using Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Base;
