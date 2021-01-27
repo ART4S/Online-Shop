@@ -16,6 +16,7 @@ import PagedResponse from 'src/app/core/requests/common/paged-response';
 import ProductItemDto from 'src/app/core/models/products/product-item-dto';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
 	selector: 'app-catalog',

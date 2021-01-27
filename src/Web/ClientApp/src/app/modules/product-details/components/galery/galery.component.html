@@ -1,13 +1,36 @@
 <div class="galery" *ngIf="selectedPictureUrl">
-  <img class="galery__main-pic rounded d-block" [src]="selectedPictureUrl" />
+  <img class="galery__picture" [src]="selectedPictureUrl" />
 
-  <div class="galery__pictures">
-    <img
-      class="galery__picture"
-      *ngFor="let pictureUrl of pictureUrls"
-      [class.selected]="pictureUrl == selectedPictureUrl"
-      [src]="pictureUrl"
-      (click)="selectedPictureUrl = pictureUrl"
-    />
+  <div class="d-flex align-items-center">
+    <button
+      class="galery__button"
+      type="button"
+      (click)="carousel.prev()"
+      [class.disabled]="!carousel.hasPrev()"
+    >
+      <img src="assets/svg/chevron-left.svg" width="32" height="32" />
+    </button>
+
+    <carousel #carousel="carousel" [displayItemsCount]="5">
+      <ng-container *ngFor="let pictureUrl of pictureUrls">
+        <ng-container *carouselItem>
+          <img
+            class="galery__thumbnail"
+            [src]="pictureUrl"
+            [class.selected]="pictureUrl === selectedPictureUrl"
+            (click)="setPicture(pictureUrl)"
+          />
+        </ng-container>
+      </ng-container>
+    </carousel>
+
+    <button
+      class="galery__button"
+      type="button"
+      (click)="carousel.next()"
+      [class.disabled]="!carousel.hasNext()"
+    >
+      <img src="assets/svg/chevron-right.svg" width="32" height="32" />
+    </button>
   </div>
 </div>

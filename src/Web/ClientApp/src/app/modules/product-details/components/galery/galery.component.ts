@@ -6,10 +6,19 @@ import { Component, Input, OnInit } from '@angular/core';
 	styleUrls: ['./galery.component.scss'],
 })
 export class GaleryComponent implements OnInit {
-	@Input() selectedPictureUrl;
 	@Input() pictureUrls: string[] = [];
+
+	selectedPictureUrl: string;
 
 	constructor() {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		if (this.pictureUrls.length) {
+			this.selectedPictureUrl = this.pictureUrls[0];
+		}
+	}
+
+	setPicture(pictureUrl: string): void {
+		this.selectedPictureUrl = pictureUrl;
+	}
 }

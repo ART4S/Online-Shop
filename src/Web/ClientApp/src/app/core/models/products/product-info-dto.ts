@@ -1,5 +1,5 @@
 export default class ProductInfoDto {
-	id: number;
+	id: string;
 	name: string;
 	price?: number;
 	description: string;
