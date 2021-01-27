@@ -1,7 +1,7 @@
 <div class="galery" *ngIf="selectedPictureUrl">
   <img class="galery__picture" [src]="selectedPictureUrl" />
 
-  <div class="d-flex align-items-center">
+  <div class="d-flex justify-content-between">
     <button
       class="galery__button"
       type="button"
@@ -11,7 +11,11 @@
       <img src="assets/svg/chevron-left.svg" width="32" height="32" />
     </button>
 
-    <carousel #carousel="carousel" [displayItemsCount]="5">
+    <carousel
+      class="galery__carousel"
+      #carousel="carousel"
+      [displayItemsCount]="5"
+    >
       <ng-container *ngFor="let pictureUrl of pictureUrls">
         <ng-container *carouselItem>
           <img
