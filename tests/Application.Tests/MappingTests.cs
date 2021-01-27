@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Application.Features.Carts.GetItems;
 using Application.Features.ProductBrands.GetAll;
 using Application.Features.Products.GetAllPaged;
 using Application.Features.Products.GetById;
@@ -18,14 +18,7 @@ namespace Application.Tests
         {
             return new MapperConfiguration(config =>
             {
-                var profileTypes = typeof(IDbContext).Assembly
-                    .GetTypes()
-                    .Where(x => x.IsSubclassOf(typeof(Profile)));
-
-                foreach (Type profileType in profileTypes)
-                {
-                    config.AddProfile(profileType);
-                }
+                config.AddMaps(typeof(GetByIdProfile).Assembly);
             });
         }
 
@@ -69,7 +62,10 @@ namespace Application.Tests
             {
                 yield return new object[] { typeof(Product), typeof(ProductInfoDto) };
                 yield return new object[] { typeof(Product), typeof(ProductItemDto) };
+                yield return new object[] { typeof(Product), typeof(CartItemDto) };
+
                 yield return new object[] { typeof(ProductBrand), typeof(ProductBrandDto) };
+
                 yield return new object[] { typeof(ProductType), typeof(ProductTypeDto) };
             }
         }

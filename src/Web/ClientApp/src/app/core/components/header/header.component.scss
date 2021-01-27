@@ -1,8 +1,15 @@
 .cart {
-  display: flex;
-  align-items: center;
+  position: relative;
+  padding-top: 10px;
+  padding-right: 10px;
 
-  &__image {
-    margin-right: 10px;
+  &__badge {
+    top: 0;
+    right: 0;
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  &__link {
   }
 }

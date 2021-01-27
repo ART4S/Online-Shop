@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Enums;
 using Application.Common.Pagination;
 using Application.Interfaces;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Domian.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -31,18 +33,13 @@ namespace Application.Features.Products.GetAllPaged
             IQueryable<Product> products = _db.Products.AsNoTracking();
 
             products = ApplyFilters(products, request);
+            products = ApplySort(products, request.SortDirection);
 
-            PagedResponse<ProductItemDto> response = 
-                await products.PaginateAndMapAsync(
-                    request, _mapper, x => ApplySort(x, request.SortDirection));
+            PagedResponse<ProductItemDto> response = await products
+                .ProjectTo<ProductItemDto>(_mapper.ConfigurationProvider)
+                .PaginateAsync(request);
 
-            foreach (var item in response.Items)
-            {
-                if (!string.IsNullOrEmpty(item.PictureUrl))
-                {
-                    item.PictureUrl = _uriBuilder.GetPictureUrl(item.PictureUrl);
-                }
-            }
+            SetPictureUrls(response.Items);
 
             return response;
         }
@@ -76,6 +73,17 @@ namespace Application.Features.Products.GetAllPaged
                 SortDirection.Newly => products.OrderBy(x => x.UpdateDate ?? x.CreateDate),
                 _ => products
             };
+        }
+
+        private void SetPictureUrls(IEnumerable<ProductItemDto> items)
+        {
+            foreach (ProductItemDto item in items)
+            {
+                if (!string.IsNullOrEmpty(item.PictureUrl))
+                {
+                    item.PictureUrl = _uriBuilder.GetPictureUrl(item.PictureUrl);
+                }
+            }
         }
     }
 }
